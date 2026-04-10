@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Регистрация</title>
+    <style>
+        body { 
+            font-family: Arial; 
+            max-width: 400px; 
+            margin: 50px auto; 
+            padding: 20px; 
+        }
+        input { 
+            width: 100%; 
+            padding: 8px; 
+            margin: 5px 0; 
+            box-sizing: border-box;
+        }
+        button { 
+            width: 100%; 
+            padding: 10px; 
+            background: #28a745; 
+            color: white; 
+            border: none; 
+            cursor: pointer;
+        }
+        button:hover {
+            background: #1e7e34;
+        }
+        .error {
+            color: #721c24;
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Регистрация</h2>
+    
+    {% if error %}
+        <div class="error">{{ error }}</div>
+    {% endif %}
+    
+    <form method="POST">
+        <div>
+            <input type="text" name="name" placeholder="Имя" required>
+        </div>
+        <div>
+            <input type="email" name="email" placeholder="Email" required>
+        </div>
+        <div>
+            <input type="password" name="password" placeholder="Пароль" required>
+        </div>
+        <button type="submit">Зарегистрироваться</button>
+    </form>
+    
+    <p style="text-align: center; margin-top: 15px;">
+        Уже есть аккаунт? <a href="{{ url_for('login') }}">Войти</a>
+    </p>
+</body>
+</html>
