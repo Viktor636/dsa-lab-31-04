@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Управление курсами валют</h2>
+
+<!-- Блок для отображения результата -->
+{% if message %}
+<div class="result" style="background: #d4edda; border: 1px solid #c3e6cb; color: #155724;">
+    <strong>✅ Успех!</strong> {{ message }}
+</div>
+{% endif %}
+
+{% if error %}
+<div class="result" style="background: #f8d7da; border: 1px solid #f5c6cb; color: #721c24;">
+    <strong>❌ Ошибка!</strong> {{ error }}
+</div>
+{% endif %}
+
+<!-- Форма добавления -->
+<div class="block">
+    <h3>➕ Добавить валюту</h3>
+    <form method="POST" action="/add">
+        <input type="text" name="currency_name" placeholder="USD, EUR" required>
+        <input type="number" name="rate" placeholder="Курс к рублю" step="any" required>
+        <button type="submit">Добавить</button>
+    </form>
+</div>
+
+<!-- Форма обновления -->
+<div class="block">
+    <h3>✏️ Обновить курс</h3>
+    <form method="POST" action="/update">
+        <input type="text" name="currency_name" placeholder="USD, EUR" required>
+        <input type="number" name="rate" placeholder="Новый курс" step="any" required>
+        <button type="submit">Обновить</button>
+    </form>
+</div>
+
+<!-- Форма удаления -->
+<div class="block">
+    <h3>🗑️ Удалить валюту</h3>
+    <form method="POST" action="/delete">
+        <input type="text" name="currency_name" placeholder="USD, EUR" required>
+        <button type="submit">Удалить</button>
+    </form>
+</div>
+
+<!-- Форма конвертации -->
+<div class="block">
+    <h3>💰 Конвертация в рубли</h3>
+    <form method="POST" action="/convert">
+        <input type="text" name="currency" placeholder="USD, EUR" required>
+        <input type="number" name="amount" placeholder="Сумма" step="any" required>
+        <button type="submit">Конвертировать</button>
+    </form>
+</div>
+
+{% endblock %}
